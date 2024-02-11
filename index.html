@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPSC Study Progress Tracker</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Dummy notifications data
+        var notifications = [
+            "New update: Day 10 progress uploaded!",
+            "Reminder: UPSC exam is approaching. Keep studying!"
+        ];
+
+        function displayNotifications() {
+            var notificationContainer = document.getElementById('notifications');
+            notificationContainer.innerHTML = '';
+            for (var i = 0; i < notifications.length; i++) {
+                var notification = document.createElement('div');
+                notification.textContent = notifications[i];
+                notificationContainer.appendChild(notification);
+            }
+        }
+
+        // Function to update countdown clock
+        function updateCountdown() {
+            var countDownDate = new Date("March 31, 2024 00:00:00").getTime(); // Set your exam date here
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+        }
+
+        // Update notifications and countdown every second
+        $(document).ready(function(){
+            displayNotifications();
+            updateCountdown();
+            setInterval(displayNotifications, 5000); // Refresh notifications every 5 seconds
+            setInterval(updateCountdown, 1000); // Update countdown every second
+        });
+    </script>
+    <style>
+        #notifications {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to UPSC Study Progress Tracker</h1>
+    <div id="loginForm">
+        <h2>Login</h2>
+        <form id="login" action="/login" method="POST">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+    <div id="notifications"></div>
+    <div id="countdown"></div>
+</body>
+</html>

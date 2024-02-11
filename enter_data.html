@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Study Data</title>
+</head>
+<body>
+    <h1>Enter Study Data</h1>
+    <!-- Your form for entering study data goes here -->
+    <p>This is the page where you can enter your study data.</p>
+    <div id="countdown"></div>
+    <script>
+        // Function to update countdown clock
+        function updateCountdown() {
+            var countDownDate = new Date("March 31, 2024 00:00:00").getTime(); // Set your exam date here
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000); // Update countdown every second
+        updateCountdown(); // Initial call to update countdown
+    </script>
+</body>
+</html>
